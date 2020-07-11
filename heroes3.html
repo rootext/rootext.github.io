@@ -1,0 +1,175 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+
+  <title>Heroes 3 Scoreboard</title>
+  <meta name="description" content="Heroes 3 Scoreboard">
+  <meta name="author" content="me">
+
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500&display=swap" rel="stylesheet">
+
+  <style type="text/css">
+    .app {
+      padding: 0;
+      margin: 0;
+      border: 0;
+      background-image: url(back-bw.png);
+    }
+
+    .panel {
+      /*width: 400px;*/
+      height: 120px;
+
+      display: flex;
+      flex-direction: row;
+
+      border: 2px #edd57a solid;
+    }
+
+    .column-0 {
+      flex-grow: 1;
+    }
+
+    .panel-players {
+      display: flex;
+      flex-direction: column;
+
+      border-right: 2px #edd57a solid;      
+    }
+
+    .row-1:not(:last-child) { 
+        border-bottom: 2px #edd57a solid;
+    } 
+
+    .row-1 {
+      flex-grow: 1;
+      flex-shrink: 1;
+    }
+
+    .panel-player {
+      display: flex;
+      flex-direction: row;
+    }
+
+    .column-2 {
+      flex-grow: 0;
+      align-items: center;
+    }
+
+    .panel-info {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .center-wrapper {
+      display: flex;
+    }
+
+    .center {
+      align-items: center;
+    }
+
+    .city {
+      width: 92px;
+      min-width: 92px;
+      background-image: url(cities-2x.png);
+      background-position-y: 0;
+    }
+
+    .city-red {
+      border: 2px solid red;
+    }
+
+    .city-blue {
+      border: 2px solid blue;
+    }
+
+    .name {
+      flex-grow: 1; 
+    }
+
+    .panel-player .text-input {
+      color: #edd57a;
+      font-size: 30px;
+    }
+
+    .panel-info .text-input {
+      color: #eeeeee;
+      font-size: 26px;
+    }
+
+    .score {
+      width: 40px;
+      min-width: 40px;
+    }
+
+    .text-input {
+      width: 100%;
+      height: 100%;
+      border: 0px;
+      padding: 0px 5px;
+
+      background-color: transparent;
+      text-transform: uppercase;
+      text-shadow: 2px 2px 0px #000000;
+
+      font-family: 'Oswald', sans-serif;
+    }
+
+  </style>
+</head>
+
+<body class="app">
+  <div class="panel">
+    <div class="column-0 panel-players">
+      <div class="row-1 panel-player">
+        <div class="column-2 city city-red" data-index="0"></div>
+        <div class="column-2 name center-wrapper">          
+            <input class="center text-input" type="text" name="" value="Yarki">          
+        </div>
+        <div class="column-2 score center-wrapper">
+          <input class="center text-input" type="text" name="" value="0">
+        </div> 
+      </div>
+      <div class="row-1 panel-player">
+        <div class="column-2 city city-blue" data-index="0"></div>
+        <div class="column-2 name center-wrapper">
+          <input class="center text-input" type="text" name="" value="Opponent">
+        </div>
+        <div class="column-2 score center-wrapper">
+          <input class="center text-input" type="text" name="" value="0">
+        </div> 
+      </div>
+    </div>
+    <div class="column-0 panel-info">
+      <div class="row-1 panel-2">
+        <div class="column-2 name center-wrapper">
+          <input class="center text-input" type="text" name="" value="+2000">
+        </div>
+      </div>
+      <div class="row-1 panel-2">
+        <div class="column-2 name center-wrapper">
+          <input class="center text-input" type="text" name="" value="Jebus Cross">
+        </div>
+      </div>
+      <div class="row-1 panel-2">
+        <div class="column-2 name center-wrapper">
+          <input class="center text-input" type="text" name="" value="Турик">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script type="text/javascript">
+    var cities = document.querySelectorAll('.city').forEach((city) => {
+      city.addEventListener('click', (el) => {
+        var index = parseInt(el.target.getAttribute('data-index'));
+        el.target.setAttribute('data-index', ++index);
+        el.target.style['background-position-y'] = '-' + (index*60 % 600) + 'px';
+      });  
+    });
+  </script>
+</body>
+</html>
