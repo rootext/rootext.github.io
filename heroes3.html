@@ -8,9 +8,12 @@
   <meta name="description" content="Heroes 3 Scoreboard">
   <meta name="author" content="me">
 
-  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500&display=swap" rel="stylesheet">
-
   <style type="text/css">
+      @font-face {
+        font-family: 'Pasta';
+        src: url('bignoodletitling.ttf')  format('truetype');
+      }
+
     .app {
       padding: 0;
       margin: 0;
@@ -99,17 +102,17 @@
 
     .panel-player .text-input {
       color: #F6FB91;
-      font-size: 27px;
+      font-size: 38px;
     }
 
     .panel-info .text-input {
       color: #eeeeee;
-      font-size: 19px;
+      font-size: 25px;
     }
 
-    .score {
-      width: 40px;
-      min-width: 40px;
+    .restart {
+      width: 50px;
+      min-width: 50px;
     }
 
     .gold {
@@ -125,15 +128,20 @@
       background-position: center;
       background-size: contain;
     }
-
+  
     .kickback .text-input {
       color: red;
       text-shadow: 1px 1px 0px #eeeeee;
     }
 
     .bestof {
-      width: 46px;
-      min-width: 46px;
+      width: 40px;
+      min-width: 40px;
+    }
+
+    .score {
+      width: 40px;
+      min-width: 40px;
     }
 
     .text-input {
@@ -146,7 +154,7 @@
       text-transform: uppercase;
       text-shadow: 2px 2px 0px #000000;
 
-      font-family: 'Oswald', sans-serif;
+      font-family: 'Pasta', sans-serif;
     }
 
   </style>
@@ -160,8 +168,8 @@
         <div class="column-2 expand center-wrapper">          
             <input class="center text-input" type="text" name="" value="Yarki">          
         </div>
-        <div class="column-2 score center-wrapper">
-          <input class="center text-input" type="text" name="" value="0">
+        <div class="column-2 restart center-wrapper">
+          <input class="center text-input" type="text" name="" value="111">
         </div> 
       </div>
       <div class="row-1 panel-player">
@@ -169,9 +177,9 @@
         <div class="column-2 expand center-wrapper">
           <input class="center text-input" type="text" name="" value="Opponent">
         </div>
-        <div class="column-2 score center-wrapper">
-          <input class="center text-input" type="text" name="" value="0">
-        </div> 
+        <div class="column-2 restart center-wrapper">
+          <input class="center text-input" type="text" name="" value="111">
+        </div>
       </div>
     </div>
     <div class="column-0 panel-info">
@@ -188,12 +196,15 @@
           <input class="center text-input" type="text" name="" value="Jebus Cross">
         </div>
         <div class="column-2 bestof center-wrapper">
-          <input class="center text-input" type="text" name="" value="bo1">
+          <input class="center text-input" type="text" name="" value="bo3">
+        </div>
+        <div class="column-2 score center-wrapper">
+          <input class="center text-input" type="text" name="" value="1:1">
         </div>
       </div>
       <div class="row-1 panel-2">
-        <div class="column-2 expand center-wrapper">
-          <marquee><input class="center text-input" type="text" name="" value="Synergy"></marquee>
+        <div class="column-2 tournament expand center-wrapper">
+          <input class="scroll center text-input" type="text" name="" value="Synergy" />
         </div>
       </div>
     </div>
@@ -222,6 +233,15 @@
       console.log(y);
       target.style['background-position-y'] = '-' + y + 'px';
     };
+    /*
+    document.querySelector('.scroll').animate([
+        { transform: 'translateX(100%)' }, 
+        { transform: 'translateX(-100%)' }
+    ], {  
+      duration: 10000,
+      iterations: Infinity
+    });
+    */
   </script>
 </body>
 </html>
