@@ -20,12 +20,12 @@
 
     .panel {
       /*width: 400px;*/
-      height: 120px;
+      height: 90px;
 
       display: flex;
       flex-direction: row;
 
-      border: 2px #edd57a solid;
+      border: 2px #F6FB91 solid;
     }
 
     .column-0 {
@@ -36,11 +36,11 @@
       display: flex;
       flex-direction: column;
 
-      border-right: 2px #edd57a solid;      
+      border-right: 2px #F6FB91 solid;      
     }
 
     .row-1:not(:last-child) { 
-        border-bottom: 2px #edd57a solid;
+        border-bottom: 2px #F6FB91 solid;
     } 
 
     .row-1 {
@@ -51,6 +51,7 @@
     .panel-player {
       display: flex;
       flex-direction: row;
+      box-shadow: inset 0px 0px 0px 2px rgba(0,0,0,1);
     }
 
     .column-2 {
@@ -63,6 +64,12 @@
       flex-direction: column;
     }
 
+    .panel-2 {
+      display: flex;
+      flex-direction: row;
+      box-shadow: inset 0px 0px 0px 2px rgba(0,0,0,1);
+    }
+
     .center-wrapper {
       display: flex;
     }
@@ -72,9 +79,9 @@
     }
 
     .city {
-      width: 92px;
-      min-width: 92px;
-      background-image: url(cities-2x.png);
+      width: 69px;
+      min-width: 69px;
+      background-image: url(cities-15x.png);
       background-position-y: 0;
     }
 
@@ -86,23 +93,47 @@
       border: 2px solid blue;
     }
 
-    .name {
+    .expand {
       flex-grow: 1; 
     }
 
     .panel-player .text-input {
-      color: #edd57a;
-      font-size: 30px;
+      color: #F6FB91;
+      font-size: 27px;
     }
 
     .panel-info .text-input {
       color: #eeeeee;
-      font-size: 26px;
+      font-size: 19px;
     }
 
     .score {
       width: 40px;
       min-width: 40px;
+    }
+
+    .gold {
+      width: 46px;
+      min-width: 46px;
+    }
+
+    .gold-image {
+      width: 46px;
+      height: 30px;
+
+      background-image: url(gold-tr.png);
+      background-position: center;
+      background-size: contain;
+    }
+
+    .kickback .text-input {
+      color: red;
+      text-shadow: 1px 1px 0px #eeeeee;
+    }
+
+    .bestof {
+      width: 46px;
+      min-width: 46px;
     }
 
     .text-input {
@@ -126,7 +157,7 @@
     <div class="column-0 panel-players">
       <div class="row-1 panel-player">
         <div class="column-2 city city-red" data-index="0"></div>
-        <div class="column-2 name center-wrapper">          
+        <div class="column-2 expand center-wrapper">          
             <input class="center text-input" type="text" name="" value="Yarki">          
         </div>
         <div class="column-2 score center-wrapper">
@@ -135,7 +166,7 @@
       </div>
       <div class="row-1 panel-player">
         <div class="column-2 city city-blue" data-index="0"></div>
-        <div class="column-2 name center-wrapper">
+        <div class="column-2 expand center-wrapper">
           <input class="center text-input" type="text" name="" value="Opponent">
         </div>
         <div class="column-2 score center-wrapper">
@@ -145,18 +176,24 @@
     </div>
     <div class="column-0 panel-info">
       <div class="row-1 panel-2">
-        <div class="column-2 name center-wrapper">
+        <div class="column-2 kickback expand center-wrapper">
           <input class="center text-input" type="text" name="" value="+2000">
         </div>
-      </div>
-      <div class="row-1 panel-2">
-        <div class="column-2 name center-wrapper">
-          <input class="center text-input" type="text" name="" value="Jebus Cross">
+        <div class="column-2 gold">
+          <div class="gold-image"></div>
         </div>
       </div>
       <div class="row-1 panel-2">
-        <div class="column-2 name center-wrapper">
-          <input class="center text-input" type="text" name="" value="Турик">
+        <div class="column-2 expand center-wrapper">
+          <input class="center text-input" type="text" name="" value="Jebus Cross">
+        </div>
+        <div class="column-2 bestof center-wrapper">
+          <input class="center text-input" type="text" name="" value="bo1">
+        </div>
+      </div>
+      <div class="row-1 panel-2">
+        <div class="column-2 expand center-wrapper">
+          <marquee><input class="center text-input" type="text" name="" value="Synergy"></marquee>
         </div>
       </div>
     </div>
@@ -165,11 +202,26 @@
   <script type="text/javascript">
     var cities = document.querySelectorAll('.city').forEach((city) => {
       city.addEventListener('click', (el) => {
-        var index = parseInt(el.target.getAttribute('data-index'));
-        el.target.setAttribute('data-index', ++index);
-        el.target.style['background-position-y'] = '-' + (index*60 % 600) + 'px';
-      });  
+        updateCity(el.target, 1);      
+      }); 
+      city.addEventListener('contextmenu', (el) => {
+        el.preventDefault();
+        updateCity(el.target, -1);        
+        return false;
+      }, false);
     });
+
+    const city_height = 45;
+    const city_count = 10;
+    var updateCity = (target, delta) => {
+      var index = parseInt(target.getAttribute('data-index')) || 0;
+      index += delta;
+      target.setAttribute('data-index', index);
+      console.log(index);
+      var y = (city_height * city_count * 1000 + index*city_height) % (city_height * city_count);
+      console.log(y);
+      target.style['background-position-y'] = '-' + y + 'px';
+    };
   </script>
 </body>
 </html>
