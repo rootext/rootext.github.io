@@ -9,10 +9,10 @@
   <meta name="author" content="me">
 
   <style type="text/css">
-      @font-face {
-        font-family: 'Pasta';
-        src: url('bignoodletitling.ttf')  format('truetype');
-      }
+    @font-face {
+      font-family: 'Pasta';
+      src: url('bignoodletitling.ttf') format('truetype');
+    }
 
     .app {
       padding: 0;
@@ -22,17 +22,12 @@
     }
 
     .panel {
-      /*width: 400px;*/
       height: 90px;
 
       display: flex;
       flex-direction: row;
 
       border: 2px #F6FB91 solid;
-    }
-
-    .column-0 {
-      flex-grow: 1;
     }
 
     .panel-players {
@@ -42,22 +37,17 @@
       border-right: 2px #F6FB91 solid;      
     }
 
-    .row-1:not(:last-child) { 
-        border-bottom: 2px #F6FB91 solid;
-    } 
-
-    .row-1 {
-      flex-grow: 1;
-      flex-shrink: 1;
-    }
-
-    .panel-player {
+    .panel-row {
       display: flex;
       flex-direction: row;
       box-shadow: inset 0px 0px 0px 2px rgba(0,0,0,1);
     }
 
-    .column-2 {
+    .panel-row:not(:last-child) { 
+      border-bottom: 2px #F6FB91 solid;
+    }
+
+    .panel-cell {
       flex-grow: 0;
       align-items: center;
     }
@@ -67,18 +57,16 @@
       flex-direction: column;
     }
 
-    .panel-2 {
-      display: flex;
-      flex-direction: row;
-      box-shadow: inset 0px 0px 0px 2px rgba(0,0,0,1);
-    }
-
     .center-wrapper {
       display: flex;
     }
 
     .center {
       align-items: center;
+    }
+
+    .expand {
+      flex: 1 1 auto; 
     }
 
     .city {
@@ -94,10 +82,6 @@
 
     .city-blue {
       border: 2px solid blue;
-    }
-
-    .expand {
-      flex-grow: 1; 
     }
 
     .panel-player .text-input {
@@ -162,48 +146,48 @@
 
 <body class="app">
   <div class="panel">
-    <div class="column-0 panel-players">
-      <div class="row-1 panel-player">
-        <div class="column-2 city city-red" data-index="0"></div>
-        <div class="column-2 expand center-wrapper">          
+    <div class="panel-players expand">
+      <div class="panel-row panel-player expand">
+        <div class="panel-cell city city-red" data-index="0"></div>
+        <div class="panel-cell expand center-wrapper">          
             <input class="center text-input" type="text" name="" value="Yarki">          
         </div>
-        <div class="column-2 restart center-wrapper">
+        <div class="panel-cell restart center-wrapper">
           <input class="center text-input" type="text" name="" value="111">
         </div> 
       </div>
-      <div class="row-1 panel-player">
-        <div class="column-2 city city-blue" data-index="0"></div>
-        <div class="column-2 expand center-wrapper">
+      <div class="panel-row panel-player expand">
+        <div class="panel-cell city city-blue" data-index="0"></div>
+        <div class="panel-cell expand center-wrapper">
           <input class="center text-input" type="text" name="" value="Opponent">
         </div>
-        <div class="column-2 restart center-wrapper">
+        <div class="panel-cell restart center-wrapper">
           <input class="center text-input" type="text" name="" value="111">
         </div>
       </div>
     </div>
-    <div class="column-0 panel-info">
-      <div class="row-1 panel-2">
-        <div class="column-2 kickback expand center-wrapper">
+    <div class="panel-info expand">
+      <div class="panel-row expand">
+        <div class="panel-cell kickback expand center-wrapper">
           <input class="center text-input" type="text" name="" value="+2000">
         </div>
-        <div class="column-2 gold">
+        <div class="panel-cell gold">
           <div class="gold-image"></div>
         </div>
       </div>
-      <div class="row-1 panel-2">
-        <div class="column-2 expand center-wrapper">
+      <div class="panel-row expand">
+        <div class="panel-cell expand center-wrapper">
           <input class="center text-input" type="text" name="" value="Jebus Cross">
         </div>
-        <div class="column-2 bestof center-wrapper">
+        <div class="panel-cell bestof center-wrapper">
           <input class="center text-input" type="text" name="" value="bo3">
         </div>
-        <div class="column-2 score center-wrapper">
+        <div class="panel-cell score center-wrapper">
           <input class="center text-input" type="text" name="" value="1:1">
         </div>
       </div>
-      <div class="row-1 panel-2">
-        <div class="column-2 tournament expand center-wrapper">
+      <div class="panel-row expand">
+        <div class="panel-cell tournament expand center-wrapper">
           <input class="scroll center text-input" type="text" name="" value="Synergy" />
         </div>
       </div>
