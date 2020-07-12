@@ -55,6 +55,7 @@
     .panel-info {
       display: flex;
       flex-direction: column;
+      max-width: 50%;
     }
 
     .center-wrapper {
@@ -116,6 +117,7 @@
     .kickback .text-input {
       color: red;
       text-shadow: 1px 1px 0px #eeeeee;
+      text-align: center;
     }
 
     .bestof {
@@ -150,26 +152,26 @@
       <div class="panel-row panel-player expand">
         <div class="panel-cell city city-red" data-index="0"></div>
         <div class="panel-cell expand center-wrapper">          
-            <input class="center text-input" type="text" name="" value="Yarki">          
+            <input class="center text-input" type="text" id="name-red" value="">          
         </div>
         <div class="panel-cell restart center-wrapper">
-          <input class="center text-input" type="text" name="" value="111">
+          <input class="center text-input" type="text" id="restart-red" value="">
         </div> 
       </div>
       <div class="panel-row panel-player expand">
         <div class="panel-cell city city-blue" data-index="0"></div>
         <div class="panel-cell expand center-wrapper">
-          <input class="center text-input" type="text" name="" value="Opponent">
+          <input class="center text-input" type="text" id="name-blue" value="">
         </div>
         <div class="panel-cell restart center-wrapper">
-          <input class="center text-input" type="text" name="" value="111">
+          <input class="center text-input" type="text" id="restart-blue" value="">
         </div>
       </div>
     </div>
     <div class="panel-info expand">
       <div class="panel-row expand">
         <div class="panel-cell kickback expand center-wrapper">
-          <input class="center text-input" type="text" name="" value="+2000">
+          <input class="center text-input" type="text" id="kickback" value="">
         </div>
         <div class="panel-cell gold">
           <div class="gold-image"></div>
@@ -177,19 +179,19 @@
       </div>
       <div class="panel-row expand">
         <div class="panel-cell expand center-wrapper">
-          <input class="center text-input" type="text" name="" value="Jebus Cross">
+          <input class="center text-input" type="text" id="template" value="">
         </div>
         <div class="panel-cell bestof center-wrapper">
-          <input class="center text-input" type="text" name="" value="bo3">
+          <input class="center text-input" type="text" id="bestof" value="">
         </div>
         <div class="panel-cell score center-wrapper">
-          <input class="center text-input" type="text" name="" value="1:1">
+          <input class="center text-input" type="text" id="score" value="">
         </div>
       </div>
       <div class="panel-row expand">
-        <div class="panel-cell tournament expand center-wrapper">
-          <input class="scroll center text-input" type="text" name="" value="Synergy" />
-        </div>
+        <marquee class="panel-cell tournament expand center-wrapper">
+          <div class="scroll center text-input" id="tournament" contenteditable></div>
+        </marquee>
       </div>
     </div>
   </div>
@@ -217,6 +219,30 @@
       console.log(y);
       target.style['background-position-y'] = '-' + y + 'px';
     };
+
+
+    document.getElementById('name-red').addEventListener('blur', (e) => { localStorage.setItem('name-red', e.target.value); });
+    document.getElementById('name-blue').addEventListener('blur', (e) => { localStorage.setItem('name-blue', e.target.value); });
+    document.getElementById('restart-red').addEventListener('blur', (e) => { localStorage.setItem('restart-red', e.target.value); });
+    document.getElementById('restart-blue').addEventListener('blur', (e) => { localStorage.setItem('restart-blue', e.target.value); });
+    document.getElementById('kickback').addEventListener('blur', (e) => { localStorage.setItem('kickback', e.target.value); });
+    document.getElementById('template').addEventListener('blur', (e) => { localStorage.setItem('template', e.target.value); });
+    document.getElementById('bestof').addEventListener('blur', (e) => { localStorage.setItem('bestof', e.target.value); });
+    document.getElementById('score').addEventListener('blur', (e) => { localStorage.setItem('score', e.target.value); });
+    document.getElementById('tournament').addEventListener('blur', (e) => { localStorage.setItem('tournament', e.target.innerHTML); });
+
+    var loadValues = () => {
+      document.getElementById('name-red').value = localStorage.getItem('name-red') || 'Player 1';
+      document.getElementById('name-blue').value = localStorage.getItem('name-blue') || 'Player 2';
+      document.getElementById('restart-red').value = localStorage.getItem('restart-red') || '112';
+      document.getElementById('restart-blue').value = localStorage.getItem('restart-blue') || '112';
+      document.getElementById('kickback').value = localStorage.getItem('kickback') || '+2000';
+      document.getElementById('template').value = localStorage.getItem('template') || 'Jebus Cross';
+      document.getElementById('bestof').value = localStorage.getItem('bestof') || 'bo3';
+      document.getElementById('score').value = localStorage.getItem('score') || '0:0';
+      document.getElementById('tournament').innerHTML = localStorage.getItem('tournament') || 'Tournament';
+    };
+    loadValues();
     /*
     document.querySelector('.scroll').animate([
         { transform: 'translateX(100%)' }, 
